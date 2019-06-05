@@ -1,0 +1,97 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>创新方法工作平台</title>
+<!--添加页面框架-->
+<link rel="import" id="frame" href="/webresources/common/html/appFrame.html">
+<link rel="stylesheet" href="/webresources/bootstrap/bootstrap-table/bootstrap-table.css">
+<link rel="stylesheet" href="css/handsontable.full.min.css">
+<link rel="stylesheet" type="text/css" href="css/main.css">
+
+<script type="text/javascript" src="/webresources/ace-master/assets/js/jquery-2.1.4.min.js"></script>
+<script type="text/javascript" src="/webresources/ace-master/assets/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="/webresources/bootstrap/bootstrap-table/bootstrap-table.js"></script>
+<script type="text/javascript" src="/webresources/bootstrap/bootstrap-table/locale/bootstrap-table-zh-CN.js"></script>
+<script type="text/javascript" src="js/handsontable.full.js"></script>
+<script type="text/javascript" src="js/index.js"></script>
+<!-- <script type="text/javascript" src="js/code-generator.js"></script>
+<script type="text/javascript" src="js/data.js"></script> -->
+
+
+<!-- //<script type="text/javascript" src="js/test_table.js"></script> -->
+
+<!-- <link rel="stylesheet" href="css/excelloadstyle.css" media="screen" type="text/css" /> -->
+</head>
+
+<body class="no-skin">
+	<div id="mainFunctionHtml">
+		<div id="myCustomLi">
+			<li class="active"><a data-toggle="tab" href="#tableEdit"> <i class="green ace-icon fa fa-desktop bigger-120"></i> 表格编辑
+			</a></li>
+		</div>
+		<div id="myCustomTab">
+			<div id="tableEdit" class="tab-pane active">
+				<div id="mainBtnGroup" class="btn-group btn-group-sm">
+					<a type="button" class="btn btn-xs btn-info" id="saveProject" onclick="saveProject()">
+						<i class="ace-icon fa fa-save bigger-120"></i>保存
+					</a>
+					<a type="button" class="btn btn-xs btn-success" id="saveAsProject" style="" data-toggle="modal" data-target="#saveAsModal">
+						<i class="ace-icon fa fa-random bigger-120"></i>另存为
+					</a>
+				 </div>				<br>
+				<div id="hot"></div>
+			</div>
+		</div>
+	</div>
+	<!--帮助页面-->
+	<div id="helpHtml">
+		<div class="page-header">
+			<h1>测量系统分析App使用说明</h1>
+		</div>
+		<div class="alert alert-block alert-success" id="appHelp">
+			<div class="helpClass">
+				<p class="helpP">
+					<i class="ace-icon fa fa-check green"></i> 欢迎使用<strong
+						class="green">测量系统分析App</strong>, 使用流程如下：<br>
+					&nbsp;&nbsp;&nbsp;&nbsp;1、新建项目或者查询已有的项目<br> <img
+						src="files/img/help1.jpg" height="180" width="100%" /><br>
+					&nbsp;&nbsp;&nbsp;&nbsp;2、若新建项目则通过Excel导入或者手动添加的方式输入数据；如查看项目则可以直接查看到该项目的输入数据<br>
+					<img src="files/img/help2.jpg" height="200" width="70%" /><br>
+					&nbsp;&nbsp;&nbsp;&nbsp;3、测量系统分析结果<br> <img
+						src="files/img/help3.jpg" height="300" width="100%" /><br>
+					&nbsp;&nbsp;&nbsp;&nbsp;4、若为登录用户则编辑与项目相关的信息<br> <img
+						src="files/img/help4.jpg" height="200" width="70%" /><br>
+				<p>
+			</div>
+		</div>
+	</div>
+	<!--另存为模态框-->
+	<div class="modal fade" id="saveAsModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title" id="newProjectModalTitle">新建项目</h4>
+				</div>
+				<div class="modal-body">
+					<!--  -->
+					<div class="input-group">
+						<span class="input-group-addon">项目名：</span> <input type="text" class="form-control" placeholder="请输入项目名称" id="saveAsProjectNameModal">
+					</div>
+					<br>
+					<div class="input-group">
+						<span class="input-group-addon">备 注：</span> <input type="text" class="form-control" placeholder="请输入备注" id="saveAsProjectRemarkModal">
+					</div>
+					<br>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+					<button type="button" class="btn btn-primary" onclick="saveAsProject()" id="saveAsProButton">确认</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript" src="js/hansontableApp.js"></script>
+	<script type="text/javascript" src="js/buttonAction.js"></script>
+</body>
+</html>

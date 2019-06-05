@@ -1,0 +1,318 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>创新方法工作平台</title>
+<!--添加页面框架-->
+<link rel="import" id="frame" href="/webresources/common/html/appFrame.html">
+<link rel="stylesheet" href="css/handsontable.full.min.css">
+<link rel="stylesheet" media="screen" href="css/colorpicker.css">
+<link rel="stylesheet" media="screen" href="css/layer.css">
+<link rel="stylesheet" media="screen" href="css/global.css">
+<!--静态资源中已经添加的css和js-->
+<!--<link rel="stylesheet" href="../../ace-master/assets/css/bootstrap.min.css" />-->
+<!--<link rel="stylesheet" href="../../ace-master/assets/css/ace.min.css" />-->
+<!--<link rel="stylesheet" href="../../ace-master/assets/font-awesome/4.5.0/css/font-awesome.min.css" />-->
+<!--<link rel="stylesheet" href="../../ace-master/assets/css/ace-rtl.min.css" />-->
+<!--<link rel="stylesheet" href="../../ace-master/assets/css/ace-skins.min.css" />-->
+<!--<link rel="stylesheet" href="../../ace-master/assets/css/fonts.googleapis.com.css" />-->
+<!--<link rel="stylesheet" href="../../common/css/Extra.css" />-->
+<!--<link rel="stylesheet" href="../../common/css/searchStyle.css" />-->
+<!--<script type="text/javascript" src="../../ace-master/assets/js/ace-extra.min.js"></script>-->
+<!--<script type="text/javascript" src="../../ace-master/assets/js/jquery-2.1.4.min.js"></script>-->
+<!--<script type="text/javascript" src="../../ace-master/assets/js/ace.min.js"></script>-->
+<!--<script type="text/javascript" src="../../ace-master/assets/js/bootstrap.min.js"></script>-->
+<!--<script type="text/javascript" src="../../ace-master/assets/js/jquery.dataTables.min.js"></script>-->
+<!--<script type="text/javascript" src="../../ace-master/assets/js/jquery.dataTables.bootstrap.min.js"></script>-->
+<!--<script type="text/javascript" src="../../ace-master/assets/js/jquery-ui.custom.min.js"></script>-->
+<!--<script type="text/javascript" src="../../ace-master/assets/js/jquery.ui.touch-punch.min.js"></script>-->
+<!--<script type="text/javascript" src="../../ace-master/assets/js/ace-elements.min.js"></script>-->
+<!--<script type="text/javascript" src="../../ace-master/assets/js/jquery.mobile.custom.min.js"></script>-->
+<!--<script type="text/javascript" src="../../common/js/userLogin.js"></script>-->
+<!--<script type="text/javascript" src="../../common/js/fuzzySearch.js"></script>-->
+<!--<script type="text/javascript" src="../../common/js/table.js"></script>-->
+<!--<script type="text/javascript" src="../../common/js/wordEdit.js"></script>-->
+<script type="text/javascript" src="js/handsontable.full.js"></script>
+<script type="text/javascript" src="js/bootstrap-colorpicker.js"></script>
+<script type="text/javascript" src="js/layer.js"></script>
+<script type="text/javascript" src="js/editExcel.js"></script>
+<script type="text/javascript" src="js/buttonAction.js"></script>
+<script type="text/javascript" src="js/hotFunction.js"></script>
+
+<!-- html2canvas将Dom节点在Canvas里边画出来 -->
+<script src="js/html2canvas.min.js"></script>
+<!-- 将canvas图片保存成图片 -->
+<script src="js/canvas2image.js"></script>
+<script src="js/base64.js"></script>
+
+</head>
+<body class="no-skin">
+	<div id="mainFunctionHtml">
+		<div id="myCustomLi">
+			<li class="active"><a data-toggle="tab" href="#tableEdit"> <i
+					class="green ace-icon fa fa-desktop bigger-120"></i>表格编辑
+			</a></li>
+		</div>
+		<div id="myCustomTab">
+			<div class="tab-pane active" id="tableEdit">
+				<div id="mainBtnGroup" class="btn-group btn-group-sm">
+					<button type="button" class="btn btn-info" id="saveProject"
+						onclick="saveProject()">
+						<span class="glyphicon glyphicon-check"></span>保存
+					</button>
+					<button type="button" class="btn btn-info" id="saveAsProject"
+						data-toggle="modal" data-target="#saveAsModal">
+						<span class="glyphicon glyphicon-log-in"></span>另存
+					</button>
+					<button type="button" class="btn btn-info" id="downLoadPicture"
+						onclick="downLoadPicture()">
+						<span class="glyphicon glyphicon-check"></span>保存图片
+					</button>
+					<br>
+					<br>
+				</div>
+				<div class="widget-box">
+					<div class="widget-body">
+						<div class="widget-toolbox">
+							<div class="btn-toolbar">
+								<div class="input-group" style="width: 40%">
+									<input id="templateCellInput" class="form-control" type="text"
+										placeholder="请输入单元格内容" />
+								</div>
+
+								<div data-toggle="buttons" class="btn-group fontStyle">
+									<label class="btn btn-default btn-white" data-rel="tooltip"
+										data-placement="bottom" title="加粗"> <i
+										class="icon-only ace-icon fa fa-bold bigger-110"></i>
+									</label> <label class="btn btn-default btn-white" data-rel="tooltip"
+										data-placement="bottom" title="斜体"> <i
+										class="icon-only ace-icon fa fa-italic bigger-110"></i>
+									</label> <label class="btn btn-default btn-white" data-rel="tooltip"
+										data-placement="bottom" title="下划线"> <i
+										class="icon-only ace-icon fa fa-underline bigger-110"></i>
+									</label>
+								</div>
+
+								<div data-toggle="buttons" class="btn-group alignStyle">
+									<label class="btn btn-primary btn-white" data-rel="tooltip"
+										data-placement="bottom" title="左对齐"> <i
+										class="icon-only ace-icon fa fa-align-left bigger-110"></i> <input
+										type="radio" value="1">
+									</label> <label class="btn btn-primary btn-white" data-rel="tooltip"
+										data-placement="bottom" title="居中对齐"> <i
+										class="icon-only ace-icon fa fa-align-center bigger-110"></i>
+
+										<input type="radio" value="2">
+									</label> <label class="btn btn-primary btn-white" data-rel="tooltip"
+										data-placement="bottom" title="右对齐"> <i
+										class="icon-only ace-icon fa fa-align-right bigger-110"></i> <input
+										type="radio" value="3">
+									</label> <label class="btn btn-primary btn-white" data-rel="tooltip"
+										data-placement="bottom" title="两端对齐"> <i
+										class="icon-only ace-icon fa fa-align-justify bigger-110"></i>
+
+										<input type="radio" value="4">
+									</label>
+								</div>
+
+								<div data-toggle="buttons" class="btn-group ColorStyle">
+									<label class="btn btn-default btn-white" data-rel="tooltip" data-placement="bottom" title="背景色"> <span>前景色</span>
+										<input type="text" value="" readonly="readonly">
+									</label>
+									<label class="btn btn-default btn-white" data-rel="tooltip" data-placement="bottom" title="字体颜色"> <span>字体颜色</span>
+										<input type="text" value="" readonly="readonly">
+									</label> 
+									<label class="btn btn-default btn-white" data-rel="tooltip" data-placement="bottom" title="边框色"> <span>边框色</span>
+										<input type="text" value="" readonly="readonly">
+									</label>
+									<!-- <button class="btn btn-info"
+										onclick="$('#chooseImg').modal('show')">图片</button> -->
+										<!--表中插入图片， way2下拉菜单 -->
+									 <div class="btn-group">
+										<a class="btn btn-sm btn-success dropdown-toggle"
+											data-toggle="dropdown" title="插入图片"
+											data-original-title="Insert picture" aria-expanded="false" style="margin-left: 5px;margin-top: 1px;height: 32px;"> <i
+											class=" ace-icon fa fa-picture-o"></i>
+										</a>
+										<div class="dropdown-menu dropdown-caret dropdown-menu-right" style="width: 102px;">
+											<div class="input-group">
+												<input class="form-control" placeholder="Image URL" type="text"
+													data-editimage="insertImage" style="margin-left: 5px;margin-right: 2px;height: 27px;width: 91px;margin-top: 3px;margin-bottom: 2px;"> <span
+													class="input-group-btn">
+													<button class="btn btn-sm btn-primary" type="button" style="height: 26px;width: 56px;margin-right: 3px;margin-left: 1px;padding-bottom: 4px;border-bottom-width: 6px;height: 30px;line-height: 12px;">Insert</button>
+												</span>
+											</div>
+											<div class="space-2"></div>
+											<label class="center block no-margin-bottom">
+												<button class="btn btn-sm btn-success" type="button" id="insertPicture" style="margin-left: 5px;height: 33px;margin-top: 2px;">
+													<i class=" ace-icon fa fa-file"></i>Choose Image …
+												</button> 
+												<input type="file" data-editimage="insertImage" accept="image/*" style="width: 0px; height: 0px;padding-left: 0px;">
+											</label>
+										</div>
+									</div> 
+								</div>
+
+							</div>
+						</div>
+					</div>
+				</div>
+				<div id="example"></div>
+				<div id="images" style="display: none;">图片预览区</div>
+			</div>
+		</div>
+	</div>
+<!--帮助页面-->
+	<div id="helpHtml">
+		<div class="page-header">
+			<h1>标准操作程序App使用说明</h1>
+		</div>
+		<div class="alert alert-block alert-success" id="appHelp">
+			<div class="helpClass">
+				<p class="helpP">
+					<i class="ace-icon fa fa-check green"></i> <strong><big>使用流程：</big></strong><br />
+					<strong>1、新建项目</strong><br />
+					<img src="./img/1.png" width="650px" height="300px"><br />
+					<strong>2、标准操作程序填写</strong><br />
+					<img src="./img/2.png" width="650px" height="300px"><br />
+					<strong>3、保存数据</strong><br />
+					<img src="./img/3.png" width="650px" height="300px"><br />
+					<strong>4、注意事项</strong><br />
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.先选择单元格，点击后再用图片按钮插入图片<br />
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2.表格编辑区按保存图片后，报告编辑区才会有图片插入<br />
+				<p>
+			</div>
+		</div>
+	</div>
+<!--另存为模态框-->
+	<div class="modal fade" id="saveAsModal" tabindex="-1" role="dialog"
+		aria-labelledby="myModalLabel" aria-hidden="true"
+		style="display: none;">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title" id="newProjectModalTitle">新建项目</h4>
+				</div>
+				<div class="modal-body">
+					<div class="input-group">
+						<span class="input-group-addon">项目名：</span> <input type="text"
+							class="form-control" placeholder="请输入项目名称"
+							id="saveAsProjectNameModal">
+					</div>
+					<br>
+					<div class="input-group">
+						<span class="input-group-addon">备 注：</span> <input type="text"
+							class="form-control" placeholder="请输入备注"
+							id="saveAsProjectRemarkModal">
+					</div>
+					<br>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default"
+						data-dismiss="modal">关闭</button>
+					<button type="button" class="btn btn-primary"
+						onclick="saveAsProject()" id="saveAsProButton">确认</button>
+				</div>
+			</div>
+		</div>
+	</div>
+			<!--表中插入图片， way1模态框 -->
+			<!-- <div class="modal fade" id="chooseImg" tabindex="-1" role="dialog"
+				aria-labelledby="myModalLabel" aria-hidden="true"
+				style="display: none;">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h4 class="modal-title" id="newProjectModalTitle">新建项目</h4>
+						</div>
+						<div class="widget-body">
+							<div class="widget-main">
+
+								<div class="form-group">
+									<div class="col-xs-12">
+										<label class="ace-file-input ace-file-multiple"><input
+											multiple="" type="file" id="id-input-file-3"><a
+											class="remove" href="#"><i class=" ace-icon fa fa-times"></i></a></label>
+									</div>
+								</div>
+
+								<label> <input type="checkbox" name="file-format"
+									id="id-file-format" class="ace"> <span class="lbl">
+										Allow only images</span>
+								</label>
+							</div>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default"
+								data-dismiss="modal">关闭</button>
+							<button type="button" class="btn btn-primary"
+								id="insertPicture">确认</button>
+						</div>
+					</div>
+				</div>
+			</div> -->
+
+			
+
+
+			<!-- <script type="text/javascript">
+				jQuery(function($) {
+					$('#id-input-file-3').ace_file_input({
+						style : 'well',
+						btn_choose : 'Drop files here or click to choose',
+						btn_change : null,
+						no_icon : 'ace-icon fa fa-cloud-upload',
+						droppable : true,
+						thumbnail : 'small',
+						preview_error : function(filename, error_code) {
+						}
+
+					}).on('change', function() {
+					});
+					$('#id-file-format')
+							.removeAttr('checked')
+							.on(
+									'change',
+									function() {
+										var whitelist_ext, whitelist_mime;
+										var btn_choose
+										var no_icon
+										if (this.checked) {
+											btn_choose = "Drop images here or click to choose";
+											no_icon = "ace-icon fa fa-picture-o";
+
+											whitelist_ext = [ "jpeg", "jpg",
+													"png", "gif", "bmp" ];
+											whitelist_mime = [ "image/jpg",
+													"image/jpeg", "image/png",
+													"image/gif", "image/bmp" ];
+										} else {
+											btn_choose = "Drop files here or click to choose";
+											no_icon = "ace-icon fa fa-cloud-upload";
+
+											whitelist_ext = null;//all extensions are acceptable
+											whitelist_mime = null;//all mimes are acceptable
+										}
+										var file_input = $('#id-input-file-3');
+										file_input
+												.ace_file_input(
+														'update_settings',
+														{
+															'btn_choose' : btn_choose,
+															'no_icon' : no_icon,
+															'allowExt' : whitelist_ext,
+															'allowMime' : whitelist_mime
+														})
+										file_input
+												.ace_file_input('reset_input');
+
+										file_input.off('file.error.ace').on(
+												'file.error.ace',
+												function(e, info) {
+												});
+									});
+					$($('.ace-file-container')[2]).remove();
+				});
+			</script> -->
+</body>
+</html>
